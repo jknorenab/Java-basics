@@ -126,7 +126,8 @@ public class Lado {
 		double longitud = 0.0;
 		double y = 0.0;
 		for(int j = 0; j < puntos[0].getDimensionEspacio() ; j++) {
-			y += Math.pow(puntos[1].getCoordenadas(j) - puntos[0].getCoordenadas(j), 2);
+			int a = 0;
+			y += Math.pow(puntos[a+1].getCoordenadas(j) - puntos[a].getCoordenadas(j), 2);
 			longitud = Math.sqrt(y);
 		}		
 		return longitud;
