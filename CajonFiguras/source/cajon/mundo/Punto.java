@@ -22,7 +22,7 @@ public class Punto {
 	 */
 	public Punto( ) {
 		dimensionEspacio = 2;
-		coordenadas = new int[dimensionEspacio];
+		coordenadas = new int[dimensionEspacio]; // Esto también se hubiera podido hacer manual no? Como coordenadas[0] y coordenadas[1], no?
 		for ( int i = 0; i < dimensionEspacio; i++) {
 			coordenadas[i] = 0;
 		}
@@ -40,6 +40,13 @@ public class Punto {
 	//TODO: (Opcional) Generar un constructor que reciba por parámetro la
 	//      dimensión del espacio y un array primitivo con las coordenadas
 	//      del punto y lo asigne al array de coordenadas.
+	
+	// Tarea Opcional ~Solución
+	
+	public Punto(int pDimensionEspacio, int[] pCoordenadas) {
+		this.dimensionEspacio = pDimensionEspacio;
+		this.coordenadas = pCoordenadas;
+	}
 	
 	
 	//-----------------------------
@@ -62,7 +69,11 @@ public class Punto {
 	 */
 	public int getCoordenadas( int pPosicionCoordenada) {
 		// TODO: Completar este método de acuerdo a la documentación.
-		return 0;
+		int posicionCoordenada = 0;  //Cómo retornar que hubo un error si el parametro posicionCoordenada es mayor que la dimensión?
+		if(pPosicionCoordenada < this.dimensionEspacio) {
+			posicionCoordenada = this.coordenadas[pPosicionCoordenada];
+		}
+		return posicionCoordenada;
 	}
 	
 	/**
@@ -80,6 +91,9 @@ public class Punto {
 	 */
 	public void setCoordenadas(int pPosicion, int pCoordenada) {
 		//TODO: Completar este método de acuerdo a la documentación.
+		if(pPosicion < this.dimensionEspacio) {
+			this.coordenadas[pPosicion] = pCoordenada;
+		} // Qué pasa si pPosicion es mayor que dimensionEspacio?
 	}
 
 	/**
@@ -97,12 +111,18 @@ public class Punto {
 	 */
 	public int determinarCuadrante() {
 		// Determina si la dimension del espacio es distinta de 2.
-		if (getDimensionEspacio() != 2) {
-			return 0;
-		}
 		
+		int cuadrante = 0;
 		//TODO: Completar el método para que retorne el cuadrante del punto.
 		//      Leer la documentación.
-		return 1;
+		if (getDimensionEspacio() != 2) {
+			cuadrante = 0;
+		} else {
+			if(this.coordenadas[0] > 0 && this.coordenadas[1] > 0) cuadrante = 1;
+			if(this.coordenadas[0] < 0 && this.coordenadas[1] > 0) cuadrante = 2;
+			if(this.coordenadas[0] < 0 && this.coordenadas[1] < 0) cuadrante = 3;
+			if(this.coordenadas[0] > 0 && this.coordenadas[1] < 0) cuadrante = 4;
+		}
+		return cuadrante;
 	}
 }
