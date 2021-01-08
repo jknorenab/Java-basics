@@ -62,6 +62,10 @@ public class Figura {
 		//TODO: Asignar a cada uno de los lados de la figura dos puntos consecutivos
 		//      en un ciclo for. Para no tener conflicto con los índices al iniciar
 		//		de nuevo el conteo, use el operador módulo %
+		int tmp = 0;
+		for (int i = 0; i < this.numLados; i++) {
+			lados[i] = new Lado(puntos[i%numLados], puntos[(i+1)%numLados]);			
+		}
 	}
 	
 	//TODO: (Opcional) Crear un constructor que cree un triángulo
