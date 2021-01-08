@@ -59,18 +59,31 @@ public class Figura {
 		//Tercero, creo el array de lados y le asigno tamaño
 		lados = new Lado[numLados];
 		//Cuarto, creo los lados de acuerdo a los puntos de la figura.
-		//TODO: Asignar a cada uno de los lados de la figura dos puntos consecutivos
-		//      en un ciclo for. Para no tener conflicto con los índices al iniciar
-		//		de nuevo el conteo, use el operador módulo %
-		int tmp = 0;
+		//Asignando a cada uno de los lados dos puntos consecutivos por medio de un ciclo for
+		//Para no tener conflicto con los índices al iniciar de nuevo el conteo, 
+		// se usó el operador módulo %
 		for (int i = 0; i < this.numLados; i++) {
 			lados[i] = new Lado(puntos[i%numLados], puntos[(i+1)%numLados]);			
 		}
 	}
 	
-	//TODO: (Opcional) Crear un constructor que cree un triángulo
+	//		Se crea un nuevo constructor que crea un triángulo
 	// 		con parámetros numLados y las coordenadas de cada uno de los puntos.
-	//		
+		
+	public Figura (int pNumLados, Punto pPunto1, Punto pPunto2, Punto pPunto3) {
+		this.colorFigura = new Color();
+		this.numLados = pNumLados;
+		this.puntos = new Punto[this.numLados];
+		this.puntos[0] = pPunto1;
+		this.puntos[1] = pPunto2;
+		this.puntos[2] = pPunto3;
+		this.lados = new Lado[this.numLados];
+		for (int i = 0; i < this.numLados; i++) {
+			this.lados[i] = new Lado(this.puntos[i%this.numLados], this.puntos[(i+1)%this.numLados]);			
+		}
+	
+		
+	}
 	
 
 	//---------------------------
@@ -114,10 +127,13 @@ public class Figura {
 	 * @return Perímetro de la figura
 	 */
 	public double calcularPerimetro() {
-		//TODO: Completar el método de acuerdo a la documentación.
 		//      Recuerde que cada uno de los lados tiene un método
 		//		para calcular su longitud.
-		return 0;
+		double perimetro = 0.0;
+		for(int i = 0; i < this.numLados; i++) {
+			perimetro += lados[i].getLongitud();
+		}
+		return perimetro;
 	}
 	
 	/**
@@ -125,8 +141,9 @@ public class Figura {
 	 * @return True si la figura es un triángulo
 	 */
 	public boolean esTriangulo() {
-		//TODO: Completar el método de acuerdo a la documentacion.
-		return true;
+		boolean triangulo = false;
+		if(this.numLados == 3) triangulo = true;
+		return triangulo;
 	}
 	
 	/**
@@ -135,11 +152,19 @@ public class Figura {
 	 * @return Tipo de triángulo según sus lados. Si no es triángulo, retorna Tipo.OTRO
 	 */
 	public Tipo determinarTipoTriangulo() {
-		//TODO: Completar el método de acuerdo a la documentación.
-		//      Antes de determinar qué tipo de triángulo es, debe determinar
-		//      si la figura es un triángulo. Puede usar el método anterior.
+		//      Antes de determinar qué tipo de triángulo es, se determina
+		//      si la figura es un triángulo, usando el método anterior.
 		
-		return null;
+		Tipo fig = Tipo.OTRO;
+		if(esTriangulo()) {
+			if (lados[0].getLongitud() == lados[1].getLongitud() 
+					&& lados[1].getLongitud() == lados[2].getLongitud()) fig = Tipo.EQUILATERO;
+			else if (lados[0].getLongitud() != lados[1].getLongitud() 
+					&& lados[1].getLongitud() != lados[2].getLongitud() 
+					&& lados[2].getLongitud() != lados[0].getLongitud()) fig = Tipo.ESCALENO;
+			else fig = Tipo.ISOSCELES;
+		}		
+		return fig;
 	}
 
 	@Override
