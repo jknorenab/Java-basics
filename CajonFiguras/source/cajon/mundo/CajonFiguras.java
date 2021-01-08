@@ -210,7 +210,7 @@ public class CajonFiguras {
 				int numLados = Integer.parseInt(datos[0]);
 				Punto[] puntos = new Punto[numLados];
 				int posicion = 0;
-				for (int i = 1; i <= datos.length; i = i+2) {
+				for (int i = 1; i < datos.length; i = i+2) {
 					int x = Integer.parseInt(datos[i]);
 					int y = Integer.parseInt(datos[i+1]);
 					Punto coord = new Punto(x,y);
@@ -226,6 +226,7 @@ public class CajonFiguras {
 		}	
 		
 	}
+
 	
 	
 	
