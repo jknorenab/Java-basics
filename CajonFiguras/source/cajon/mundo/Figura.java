@@ -81,8 +81,21 @@ public class Figura {
 		for (int i = 0; i < this.numLados; i++) {
 			this.lados[i] = new Lado(this.puntos[i%this.numLados], this.puntos[(i+1)%this.numLados]);			
 		}
+	}
 	
-		
+	// Se crea un nuevo constructor de un triangulo con parámetros numLados y  
+	public Figura(int pNumLados, int coord1, 
+			int coord2, int coord3, int coord4, int coord5, int coord6) {
+		this.colorFigura = new Color();
+		this.numLados = pNumLados;
+		this.puntos = new Punto[this.numLados];
+		this.puntos[0] = new Punto(coord1, coord2);
+		this.puntos[1] = new Punto(coord3, coord4);
+		this.puntos[2] = new Punto(coord5, coord6);
+		this.lados = new Lado[this.numLados];
+		for (int i = 0; i < this.numLados; i++) {
+			this.lados[i] = new Lado(this.puntos[i%this.numLados], this.puntos[(i+1)%this.numLados]);			
+		}		
 	}
 	
 
