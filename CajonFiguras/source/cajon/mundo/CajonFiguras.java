@@ -17,24 +17,40 @@ public class CajonFiguras {
 	//----------------
 	// Constructor
 	//----------------
+	/**
+	 * Esta clase modela un cajon donde se almacenan figuras con distintas características
+	 */
 	
-	//TODO: Escribir el código del constructor que genere el ArrayList figuras
-	// vacío. Se debe documentar. No debe recibir nada por parámetro.
+	public CajonFiguras() {
+		// El constructo de la calse genera un ArrayList de figuras  vacío, sin recibir nada por parámetro
+		figuras = new ArrayList<Figura>();
+	}
 	
 	
 	//----------------
 	// Métodos
 	//----------------
 	
-	//TODO: No es necesario crear métodos getter y setter en este caso.
+	// No es necesario crear métodos getter y setter en este caso.
 	
 	/**
 	 * Determina la figura con mayor perímetro dentro del ArrayList figuras.
 	 * @return Número de lados, perímetro y posición dentro del ArrayList.
 	 */
 	public String figuraConMayorPerimetro ( ) {
-		//TODO: Completar el método de acuerdo a la documentación.
-		return " ";
+		double per = 0.0;
+		int numLados = 0;
+		int ciclo = 0;
+		int posicion = 0;		
+		for(Figura f: figuras) {
+			if(f.calcularPerimetro()> per) {
+				per = f.calcularPerimetro();
+				numLados = f.getNumLados();
+				posicion = ciclo;
+				ciclo += 1;
+			}
+		}
+		return "La figura con mayor perímetro tiene " +numLados +" lados, el valor de su perimetro es " +per +" y su posicion en la lista es " +posicion  ;
 	}
 	
 	/**
@@ -44,8 +60,23 @@ public class CajonFiguras {
 	 * @return Número de lados, perímetro y número de figura (Figura 1 o Figura 2).
 	 */
 	public String figuraConMayorPerimetro ( Figura pFigura1, Figura pFigura2) {
-		//TODO: Completar el método de acuerdo a la documentación.
-		return "";
+		if ( figuras.isEmpty()) return "No hay figuras";
+		double per = 0.0;
+		int numlados = 0;
+		if(pFigura1.calcularPerimetro() != pFigura2.calcularPerimetro()) {
+			if(pFigura1.calcularPerimetro()>pFigura2.calcularPerimetro()) {
+				per = pFigura1.calcularPerimetro();
+				numlados = pFigura1.getNumLados();
+				return " La figura 1, con número de lados " +numlados+ " tiene el mayor perimetro, de valor " +per;
+			}else {
+				per = pFigura2.calcularPerimetro();
+				numlados = pFigura2.getNumLados();
+				return " La figura 2, con número de lados " +numlados+ " tiene el mayor perimetro, de valor " +per;
+			}
+		} else {
+			per = pFigura1.calcularPerimetro();
+			return "Las figuras tienen el mismo perímetro de valor" +per;
+		}
 	}
 	
 	/**
@@ -53,8 +84,11 @@ public class CajonFiguras {
 	 * @return Número de figuras.
 	 */
 	public int calcularNumFiguras() {
-		//TODO: Completar el método de acuerdo a la documentación.
-		return 0;
+		int ciclo = 0;
+		for(Figura f: figuras) {
+			ciclo += 1;
+			}
+		return ciclo;
 	}
 	
 	/**
@@ -64,16 +98,19 @@ public class CajonFiguras {
 	 * @return Número de figuras.
 	 */
 	public int calcularNumFiguras(int pNumLados) {
-		//TODO: Completar el método de acuerdo a la documentación.
-		return 0;
-	}
+		int fig = 0;
+		for(Figura f: figuras) {
+			if(f.getNumLados() == pNumLados) fig += 1;
+		}
+		return fig;
+		}
 	
 	/**
 	 * Adiciona una figura al ArrayList figuras.
 	 * @param pFigura Figura a adicionar
 	 */
 	public void adicionarFigura ( Figura pFigura) {
-		//TODO: Completar el método de acuerdo a la documentación.
+		figuras.add(pFigura);		
 	}
 	
 	/**
@@ -82,8 +119,9 @@ public class CajonFiguras {
 	 * @param puntos Array primitivo con la lista de vértices de la figura. Debe coincidir con el número de lados de la figura
 	 */
 	public void adicionarFigura (int pNumLados, Punto[] puntos) {
-		//TODO: Completar el método de acuerdo a la documentación.
-	}
+		Figura nueva = new Figura(pNumLados, puntos);
+		figuras.add(nueva);
+		}
 	
 	
 	//-----------------
@@ -96,7 +134,18 @@ public class CajonFiguras {
 	 */
 	public static void main(String[] args) {
 		CajonFiguras cajon = new CajonFiguras();
+		System.out.println(cajon.figuraConMayorPerimetro());
 		Figura figura1 = new Figura();
+		System.out.println(figura1);
+		cajon.adicionarFigura(figura1);
+		figura1 = new Figura(3, 0,0, 0, 5, 5,0);
+		System.out.println(figura1);
+		cajon.adicionarFigura(figura1);
+		figura1 = new Figura(3, 0,3,6,-3,-2,-5);
+		System.out.println(figura1);
+		cajon.adicionarFigura(figura1);
+		System.out.println("Hay " + cajon.calcularNumFiguras() + " figuras.");
+		System.out.println(cajon.figuraConMayorPerimetro());
 		
 	}
 
