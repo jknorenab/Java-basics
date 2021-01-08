@@ -83,7 +83,7 @@ public class Figura {
 		}
 	}
 	
-	// Se crea un nuevo constructor de un triangulo con parámetros numLados y  
+	// Se crea un nuevo constructor de un triangulo con parámetros numLados y  los enteros de las coordenadas
 	public Figura(int pNumLados, int coord1, 
 			int coord2, int coord3, int coord4, int coord5, int coord6) {
 		this.colorFigura = new Color();
