@@ -8,7 +8,7 @@ package cajon.mundo;
  * @author Cristian David Herrera
  *
  */
-public class Figura {
+public class Figura implements Comparable <Figura> {
 	
 	public enum Tipo {
 		EQUILATERO,
@@ -135,6 +135,7 @@ public class Figura {
 		this.puntos = puntos;
 	}
 	
+	
 	/**
 	 * Calcula el perímetro de una figura con la distancia euclideana 
 	 * @return Perímetro de la figura
@@ -185,10 +186,28 @@ public class Figura {
 	 * Método toString() para la clase Figura.
 	 */
 	public String toString( ) {
-		if ( esTriangulo( ) )
-			return "La figura es un triángulo " + determinarTipoTriangulo().toString() + " de perímetro " + calcularPerimetro() + ".\n"; 
-		else
-			return "La figura tiene " + getNumLados() + " lados y tiene un perimetro de " + calcularPerimetro()  + ".\n";
+		// Nos permite imprimir características específicas del objeto. 
+		return "La figura tiene " + getNumLados() + " lados" ;
+	}
+
+	@Override
+	
+	/**
+	 * Método para comparar figuras según su perímetro
+	 * @param Figura con la cual se quiere comparar
+	 * @return Resta de los perímetros de las figuras en comparación
+	 */
+	// Aquí elegimos que la característica de las figuras con la cual queremos compararla es el perímetro
+	//Este método arroja negativo si el perímetro de this.figura es mayor que el perímetro de la figura con que se quiere comparar
+	// Arroja positivo si el perímetro del parámetro otro es más grande
+	//O arroja cero si resultan iguales
+	public int compareTo(Figura otro) {
+		// Este método se generó automaticamente cuando añadimos:
+		//implements Comparable al inicio de la clase Figura. 
+		// Orden descendente
+		// El int entre paréntesis convierte lo que la expresión 
+		//double:(otro.calcularPerimetro() - this.calcularPerimetro()) a int 
+		return (int) (otro.calcularPerimetro() - this.calcularPerimetro()); 
 	}
 	
 	
