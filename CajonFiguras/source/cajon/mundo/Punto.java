@@ -22,7 +22,9 @@ public class Punto {
 	 */
 	public Punto( ) {
 		dimensionEspacio = 2;
-		coordenadas = new int[dimensionEspacio]; // Esto también se hubiera podido hacer manual no? Como coordenadas[0] y coordenadas[1], no?
+		coordenadas = new int[dimensionEspacio]; 
+		// Esto también se hubiera podido hacer manual no? Como coordenadas[0] y coordenadas[1], no?
+		// Sí, pero no hubiera podido generalizarse en los casos en que la dimensión no sea 2.
 		for ( int i = 0; i < dimensionEspacio; i++) {
 			coordenadas[i] = 0;
 		}
@@ -36,12 +38,12 @@ public class Punto {
 	}
 
 	
-			
-	//TODO: (Opcional) Generar un constructor que reciba por parámetro la
-	//      dimensión del espacio y un array primitivo con las coordenadas
-	//      del punto y lo asigne al array de coordenadas.
-	
-	// Tarea Opcional ~Solución
+
+	/**
+	 *  Constructor de puntos 
+	 * @param pDimensionEspacio 
+	 * @param pCoordenadas Arreglo con las coordenadas del punto
+	 */
 	
 	public Punto(int pDimensionEspacio, int[] pCoordenadas) {
 		this.dimensionEspacio = pDimensionEspacio;
@@ -68,7 +70,6 @@ public class Punto {
 	 * @return Coordenada de la posición pedida.
 	 */
 	public int getCoordenadas( int pPosicionCoordenada) {
-		// TODO: Completar este método de acuerdo a la documentación.
 		int posicionCoordenada = 0;  //Cómo retornar que hubo un error si el parametro posicionCoordenada es mayor que la dimensión?
 		if(pPosicionCoordenada < this.dimensionEspacio) {
 			posicionCoordenada = this.coordenadas[pPosicionCoordenada];
@@ -90,7 +91,6 @@ public class Punto {
 	 * @param pCoordenada Valor de coordenada a asignar
 	 */
 	public void setCoordenadas(int pPosicion, int pCoordenada) {
-		//TODO: Completar este método de acuerdo a la documentación.
 		if(pPosicion < this.dimensionEspacio) {
 			this.coordenadas[pPosicion] = pCoordenada;
 		} // Qué pasa si pPosicion es mayor que dimensionEspacio?
@@ -113,8 +113,7 @@ public class Punto {
 		// Determina si la dimension del espacio es distinta de 2.
 		
 		int cuadrante = 0;
-		//TODO: Completar el método para que retorne el cuadrante del punto.
-		//      Leer la documentación.
+		//El método retorna el cuadrante del punto, si la dimensión del espacio es 2.
 		if (getDimensionEspacio() != 2) {
 			cuadrante = 0;
 		} else {
